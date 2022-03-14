@@ -37,3 +37,7 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+
+# repo-specific stuff
+github.R
+data/cmip5*
