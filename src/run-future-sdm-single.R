@@ -83,26 +83,26 @@ ymax <- extent(sdm.raster)[4]
 
 # Plot the model; save to pdf
 plot.file <- paste0(outpath, outprefix, "-single-future-prediction.pdf")
-pdf(file = plot.file, useDingbats = FALSE)
+#pdf(file = plot.file, useDingbats = FALSE)
 
 # Load in data for map borders
-data(wrld_simpl)
+#data(wrld_simpl)
 
 # Draw the base map
-plot(wrld_simpl, xlim = c(xmin, xmax), ylim = c(ymin, ymax), axes = TRUE, col = "gray95", 
-     main = paste0(gsub(pattern = "_", replacement = " ", x = outprefix), " - future"))
+#plot(wrld_simpl, xlim = c(xmin, xmax), ylim = c(ymin, ymax), axes = TRUE, col = "gray95", 
+     #main = paste0(gsub(pattern = "_", replacement = " ", x = outprefix), " - future"))
 
 # Add the model rasters
-plot(sdm.raster, legend = FALSE, add = TRUE)
+#plot(sdm.raster, legend = FALSE, add = TRUE)
 
 # Redraw the borders of the base map
-plot(wrld_simpl, xlim = c(xmin, xmax), ylim = c(ymin, ymax), add = TRUE, border = "gray10", col = NA)
+#plot(wrld_simpl, xlim = c(xmin, xmax), ylim = c(ymin, ymax), add = TRUE, border = "gray10", col = NA)
 
 # Add bounding box around map
-box()
+#box()
 
 # Stop re-direction to PDF graphics device
-dev.off()
+#dev.off()
 
 # Let user know analysis is done.
 message(paste0("\nAnalysis complete. Map image written to ", plot.file, "."))

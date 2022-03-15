@@ -40,4 +40,7 @@ vignettes/*.pdf
 
 # repo-specific stuff
 github.R
-data/cmip5*
+data/cmip5/*
+data/wc2-5/*
+data/*.csv
+src/johnsoni*
