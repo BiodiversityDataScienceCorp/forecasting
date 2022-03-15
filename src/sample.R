@@ -11,7 +11,7 @@ source(file = "src/setup.R")
 
 
 ### 3. In the "src" directory, copy the contents of "run-future-sdm-single.R" 
-# into a new file (still in 'src') called <species>-sdm-single.R (Rename <species> to your species)
+# into a new file (still in 'src') called <species>-future-sdm-single.R (Rename <species> to your species)
 
 
 ### 4. In BOTH new files, edit lines 14 & 15, changing MY_SPECIES to your species.
