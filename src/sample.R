@@ -43,7 +43,6 @@ write.csv(johnsoniData, "data/johnsoni.csv")
 ### 7. Use the source() command to run both files you created (one at a time)
 
 
-
 #source("path/to/file.R")
 
 #source("path/to/file.R")

@@ -82,7 +82,6 @@ ymin <- extent(sdm.raster)[3]
 ymax <- extent(sdm.raster)[4]
 
 # Plot the model; save to pdf
-plot.file <- paste0(outpath, outprefix, "-single-future-prediction.pdf")
 #pdf(file = plot.file, useDingbats = FALSE)
 
 # Load in data for map borders
@@ -103,8 +102,32 @@ plot.file <- paste0(outpath, outprefix, "-single-future-prediction.pdf")
 
 # Stop re-direction to PDF graphics device
 #dev.off()
+plot.file.sdm <- paste0(outpath, outprefix, "-single-future-prediction.jpg")
 
+#Convert sdm.raster to a data frame
+# First, to a SpatialPointsDataFrame
+sdf <- rasterToPoints(sdm.raster, spatial = TRUE)
+# Then to a 'conventional' dataframe
+rasterDF  <- data.frame(sdf)
+
+# removes absence data
+sdmRasterDF<-rasterDF %>% subset(layer>1)
+
+
+wrld<-ggplot2::map_data("world", c("mexico", "canada"))
+
+states<-ggplot(prepared.data) +
+  geom_tile(data = sdmRasterDF , aes(x = x, y = y), show.legend=FALSE) +  
+  geom_point(aes(x=lon, y=lat, color='red'), show.legend=FALSE) +
+  borders("state", xlim = c(xmin, xmax), ylim = c(ymin, ymax)) +
+  geom_polygon(data=wrld, mapping=aes(x=long, y=lat,group = group), fill = NA, colour = "grey60") +
+  scale_size_area() +
+  coord_quickmap() +
+  coord_fixed(xlim = c(xmin, xmax), ylim = c(ymin, ymax))+
+  labs(title="Current species occurrences with future climate SDM projections", x="longitude", y="latitude")
+
+ggsave(plot.file.sdm, states)
 # Let user know analysis is done.
-message(paste0("\nAnalysis complete. Map image written to ", plot.file, "."))
+message(paste0("\nAnalysis complete. Map image written to ", plot.file.sdm, "."))
 
 rm(list = ls())
